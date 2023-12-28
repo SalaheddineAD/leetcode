@@ -1,8 +1,8 @@
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
         
-        small = sys.maxsize
-        medium = sys.maxsize
+        small = float('inf')
+        medium = float('inf')
         
         for big in nums:
             if big <= small:

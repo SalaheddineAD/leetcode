@@ -1,20 +1,18 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
-        voyels = 'aeiou'
-        sub_string = list(s[:k])
-        tmp_len=len(list(filter(lambda i: voyels.find(i)!=-1, sub_string)))
-        max_len = tmp_len
+
+        s = [1 if i in {'a', 'e', 'i', 'o', 'u'} else 0 for i in s]
+        win = sum(s[:k])
+        max_win = win
         
-        for i in s[k:]:
-            sub_string.append(i)
-            if voyels.find(i) !=-1:
-                tmp_len+=1
-                
-            if voyels.find(sub_string.pop(0)) != -1:
-                tmp_len = max(0,tmp_len-1)
-                
-            if tmp_len>max_len:
-                max_len = tmp_len
-                
-        return max_len
+        for i in range(k, len(s)):
+            if s[i]:
+                win += 1
+            if s[i-k]:
+                win -= 1
+            if max_win < win:
+                max_win = win
+            if win >= k:
+                return k
+        return max_win
             

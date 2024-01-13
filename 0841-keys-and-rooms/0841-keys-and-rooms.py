@@ -19,9 +19,8 @@ class Solution:
             # nonlocal visited, rooms, result
             visited.append(room)
             for neighbor in rooms[room]:
-                if neighbor in visited:
-                    continue
-                dfs(neighbor)
+                if neighbor not in visited:
+                    dfs(neighbor)
         
         dfs(0)   
         return len(visited) == len(rooms)

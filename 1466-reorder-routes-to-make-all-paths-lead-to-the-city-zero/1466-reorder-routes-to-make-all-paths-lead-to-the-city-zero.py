@@ -1,21 +1,25 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        graph = [ [] for i in range(0,n)]
-
-        for item in connections:
-            graph[item[0]].append( [item[1],0] )
-            graph[item[1]].append( [item[0],1] )
-
-        dq = deque()
-        dq.append(0)
-        visited = [0 for i in range(0,n)]
-        visited[0] = 1
-        res = 0
-        while(len(dq)>0):
-            v = dq.popleft()
-            for neib,neg in graph[v]:
-                if(visited[neib] == 0 ):
-                    visited[neib] = 1
-                    dq.append(neib);
-                    if(neg): res += 1
-        return n-1-res
+        
+        edges = {(a,b) for a,b in connections }
+        neighbors = {city : [] for city in range(n) }
+        visited = set()
+        result = 0
+        for a,b in connections:
+            neighbors[a].append(b)
+            neighbors[b].append(a)
+        
+        # we start from 0 and then check if its neighbors are connected to it, if not we add 1 if not. Then check dfs of each of those neighbors
+        def dfs(city):
+            nonlocal neighbors, visited, result, edges 
+            for neighbor in neighbors[city]:
+                if neighbor in visited:
+                    continue
+                if (neighbor, city) not in edges:
+                    result+=1
+                visited.add(city)
+                dfs(neighbor)
+            
+        dfs(0)    
+        
+        return result

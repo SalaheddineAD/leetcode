@@ -3,6 +3,6 @@ WITH tmp AS (SELECT name, salary, departmentId, DENSE_RANK() OVER( PARTITION BY 
 FROM employee
 )
 SELECT department.name as Department, tmp.name as Employee, salary
-FROM tmp JOIN department
+FROM tmp INNER JOIN department
 ON tmp.departmentID = department.id
 WHERE salary_rank<=3

@@ -25,8 +25,8 @@ class Solution:
                 return [[]]
             final_lists=[]
             for indexEndPalindrome in palindromePartitions[currIndex]:
-                if self.isPalindrome(s[currIndex:indexEndPalindrome]):
-                    print(currIndex,indexEndPalindrome)
+                # if self.isPalindrome(s[currIndex:indexEndPalindrome]):
+                #     print(currIndex,indexEndPalindrome)
                 lists= extractPalindromes(indexEndPalindrome)
                 print(currIndex)
                 print(lists)

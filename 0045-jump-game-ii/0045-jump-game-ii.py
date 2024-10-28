@@ -11,8 +11,8 @@ class Solution:
             if i == max_pos:
                 max_pos = max_reach
                 jumps+=1
-            if max_pos>n-1:
-                return jumps
+            # if max_pos>n-1:
+            #     return jumps
         return jumps
                 
                 

@@ -2,27 +2,24 @@ import random
 class RandomizedSet:
 
     def __init__(self):
-        self.lst =[]
-        self.len = 0
+        self.dic = {}
 
     def insert(self, val: int) -> bool:
-        if val in self.lst:
+        if val in self.dic.keys():
             return False
         else:
-            self.lst.insert(random.randint(0, self.len), val)
-            self.len+=1
+            self.dic[val] = 1
             return True
             
     def remove(self, val: int) -> bool:
-        if val not in self.lst:
+        if val not in self.dic.keys():
             return False
         else:
-            self.lst.remove(val)
-            self.len-=1
+            del self.dic[val]
             return True
         
     def getRandom(self) -> int:
-        return self.lst[random.randint(0, self.len-1)]
+        return random.choice(list(self.dic.keys()))
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
